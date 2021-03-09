@@ -1,0 +1,57 @@
+from network import WLAN
+import machine
+import microcoapy
+
+_SERVER_IP = '192.168.0.35'
+_SERVER_PORT = 5683  # default CoAP port
+_COAP_POST_URL = '/pycom/rgbled'
+
+
+def sendPostRequest(client):
+    # About to post message...
+    messageId = client.post(_SERVER_IP, _SERVER_PORT, _COAP_POST_URL, "test",
+                                   None, microcoapy.COAP_CONTENT_FORMAT.COAP_TEXT_PLAIN)
+    print("[POST] Message Id: ", messageId)
+
+    # wait for response to our request for 2 seconds
+    client.poll(10000)
+
+
+def sendPutRequest(client):
+    # About to post message...
+    messageId = client.put(_SERVER_IP, _SERVER_PORT, url="/pycom/rgbled", payload="0x00000f")
+#                                   "authorization=1234567",
+#                                   microcoapy.COAP_CONTENT_FORMAT.COAP_TEXT_PLAIN)
+    print("[PUT] Message Id: ", messageId)
+
+    # wait for response to our request for 2 seconds
+    client.poll(10000)
+
+
+def sendGetRequest(client):
+    # About to post message...
+    messageId = client.get(_SERVER_IP, _SERVER_PORT, "pycom/rgbled")
+    print("[GET] Message Id: ", messageId)
+
+    # wait for response to our request for 2 seconds
+    client.poll(10000)
+
+
+def receivedMessageCallback(packet, sender):
+    print('Message received:', packet.toString(), ', from: ', sender)
+
+
+
+client = microcoapy.Coap()
+# setup callback for incoming response to a request
+client.responseCallback = receivedMessageCallback
+
+# Starting CoAP...
+client.start()
+
+#sendPostRequest(client)
+sendPutRequest(client)
+#sendGetRequest(client)
+
+# stop CoAP
+client.stop()
