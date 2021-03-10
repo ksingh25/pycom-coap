@@ -2,7 +2,7 @@
 pycom coap server and client
 This is an example implementation of CoAP server and client using the library [microCoAPy](https://github.com/insighio/microCoAPy)
 
-The CoAP server allows the coap clients to change the color of the RGB LED from remote.
+The CoAP server allows the coap clients to change the color of the RGB LED (imagine it to be your IoT lamp) from remote.
 
 Tested with libcoap coap-client.
 
