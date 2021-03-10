@@ -40,7 +40,7 @@ color = 0x000000
 
 def RGBLed(packet, senderIp, senderPort):
     global color
-    #check if it iis GET or PUT, we can reject others for the moment
+    #check if it is GET or PUT, we can reject others for the moment
     if packet.method == COAP_METHOD.COAP_GET:
 
         print('GET RGB Led request received:', packet, ', from: ', senderIp, ":", senderPort)
@@ -68,18 +68,14 @@ def RGBLed(packet, senderIp, senderPort):
   
  
 
-def temperature(packet, senderIp, senderPort):
-    print('Turn-off-led request received:', packet, ', from: ', senderIp, ":", senderPort)
-    client.sendResponse(senderIp, senderPort, packet.messageid,
-                      "ok", microcoapy.COAP_RESPONSE_CODE.COAP_CONTENT,
-                      microcoapy.COAP_CONTENT_FORMAT.COAP_NONE, packet.token)
-    pycom.rgbled(0)
+#def temperature(packet, senderIp, senderPort):
+#todo
 
 
 client = microcoapy.Coap()
 # setup callback for incoming response to a request
 client.addIncomingRequestCallback('pycom/rgbled', RGBLed)
-client.addIncomingRequestCallback('pysense/temperature', temperature)
+#client.addIncomingRequestCallback('pysense/temperature', temperature)
 
 # Starting CoAP...
 client.start()
