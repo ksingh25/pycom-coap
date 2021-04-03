@@ -4,7 +4,7 @@ This is an example implementation of CoAP server and client using the library [m
 
 The CoAP server allows the coap clients to change the color of the RGB LED (imagine it to be your IoT lamp) from remote.
 
-Tested with libcoap coap-client. Run pycom-coap on a Pycom and obtain its IP address. Here we assume it to be 192.168.0.35. Then install libcoap and coap-client on your PC. After that you can interact with the Pycom from your PC using following commands.  
+Tested with libcoap coap-client. Run pycom_wifi_coap_server.py on a Pycom and obtain its IP address. Here we assume it to be 192.168.0.35. Then install libcoap and coap-client on your PC. After that you can interact with the Pycom from your PC using following commands.  
 
 To GET the current color:
 
