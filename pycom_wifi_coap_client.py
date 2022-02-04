@@ -37,7 +37,7 @@ def sendPostRequest(client):
 
 def sendPutRequest(client):
     # About to post message...
-    messageId = client.put(_SERVER_IP, _SERVER_PORT, url="pycom/rgbled", payload="00000f")
+    messageId = client.put(_SERVER_IP, _SERVER_PORT, url="pycom/rgbled", payload="0x00000f")
 #                                   "authorization=1234567",
 #                                   microcoapy.COAP_CONTENT_FORMAT.COAP_TEXT_PLAIN)
     print("[PUT] Message Id: ", messageId)
